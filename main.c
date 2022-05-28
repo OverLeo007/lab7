@@ -307,6 +307,13 @@ int connect_nodes(ONode *obj, ENode *emp) {
     if (emp->conn_size >= 999) {
         puts("Количество объектов на которое допущен сотрудник максимально");
     }
+
+    for (int i = 0; i < obj->conn_size; i++) {
+        if (obj->connections[i] == emp) {
+            puts("На этот объект уже допущен этот сотрудник");
+            return 1;
+        }
+    }
     obj->connections[obj->conn_size++] = emp;
     emp->connections[emp->conn_size++] = obj;
     return 0;
